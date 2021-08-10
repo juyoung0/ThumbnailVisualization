@@ -1,0 +1,36 @@
+    .column {
+        flex: 50%;
+        padding: 5px;
+    }
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    .column2 {
+        width: 16.66%;
+        padding: 5px;
+    }
+
+    /* Clear floats after image containers */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .tnv-container1 tnv-container2{
+        margin: 5px;
+    }
+
+    .s3_article {
+        float: left;
+        width: 50%
+    }
+    >s3_thumbnail {
+        float: left;
+        width 50%
+    }
+
+    btn:active{
+        background:olive;
+    }

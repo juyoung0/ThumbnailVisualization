@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
+{% load static %}
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title> WELCOME </title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Add this to <head> -->
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+
+        <!--Vue.js-->
+        <script src="https://unpkg.com/vue"></script>
+        <!-- Add this after vue.js -->
+        <script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
+        <!-- view chart -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+        <script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
+
+        <link type="text/css" rel="stylesheet" href={% static "style.css" %}"/>
+        <script type='text/javascript' src="{% static "js/component.js" %}"></script>
+    </head>
+
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href='{% url 'main4' %}'>Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href='{% url 'result4' %}?tn_type=a'>Thumbnail A</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url 'result4' %}?tn_type=b'>Thumbnail B</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url 'result4' %}?tn_type=c'>Thumbnail C</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url 'result4' %}?tn_type=d'>Thumbnail D</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url 'participant4' %}'>Participant</a>
+          </li>
+          <li class="nav-item"></li>
+          <li class="nav-item">
+            <p class="navbar-text">Total : {{ total }} / Complete : {{ complete }} </p>
+            <p class="navbar-text">Mean Time : {{ min }} m {{ sec }} s </p>
+            <p class="navbar-text">{{ message }}</p>
+         </li>
+        </ul>
+      </div>
+    </nav>
+        {% block content %} {% endblock %}
+    </body>
+</html>
+<script>
+// Avoid scoping issues by encapsulating code inside anonymous function
+(function() {
+  // variable to store our current state
+  var cbstate;
+
+  // bind to the onload event
+  window.addEventListener('load', function() {
+    // Get the current state from localstorage
+    // State is stored as a JSON string
+    cbstate = JSON.parse(localStorage['CBState'] || '{}');
+
+    // Loop through state array and restore checked
+    // state for matching elements
+    for(var i in cbstate) {
+      var el = document.querySelector('input[name="' + i + '"]');
+      if (el) el.checked = true;
+    }
+
+    // Get all checkboxes that you want to monitor state for
+    var cb = document.getElementsByClassName('save-cb-state');
+
+    // Loop through results and ...
+    for(var i = 0; i < cb.length; i++) {
+
+      //bind click event handler
+      cb[i].addEventListener('click', function(evt) {
+        // If checkboxe is checked then save to state
+        if (this.checked) {
+          cbstate[this.name] = true;
+        }
+
+    // Else remove from state
+        else if (cbstate[this.name]) {
+          delete cbstate[this.name];
+        }
+
+    // Persist state
+        localStorage.CBState = JSON.stringify(cbstate);
+      });
+    }
+  });
+})();
+</script>

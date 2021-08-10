@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1-strict.dtd">
+{% load static %}
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title> WELCOME </title>
+
+        <!-- You must include this JavaScript file -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container" id="introduction">
+        <div class="jumbotron" >
+            <h1 class="display-4">Introduction</h1>
+                <p class="lead"> Your faithful participation will help us establish a theory about good practices in using visualizations for data-driven journalism. <br> The goal of this experiment is to evaluate thumbnails designed for news articles.</p>
+                <p class="lead"> This experiment is confirmed by IRB (UNISTIRB-18-52-C). Click the button below to see the IRB approval document. </p>
+                <button type="button" id="show-irb" class="btn btn-info">See IRB</button> <br>
+            <hr class="my-4">
+            <p class="lead">
+            <h3>Please acknowledge the  following restrictions before participating in our experiment. If you do not satisfy these restrictions, you will <strong style="color:red"> NOT  </strong>receive compensation for your participation. Please read them carefully.</h3>
+                <ul>
+                    <li>You must use a display with a sufficiently high resolution (minimum 1024 X 768). If your display has an insufficient display resolution, you may not proceed.</li>
+                    <li>You can use a personal desktop or laptop computer. Participation with tablets, smart phones, or other mobile devices is not permitted. </li>
+                    <li>You may be asked to maximize your browser window if its initial size is insufficient for participation.</li>
+                </ul>
+            </p>
+              <hr class="my-4">
+            <div id="start-experiment">
+                <h1 class="display-4">Tutorial</h1>
+                <p class="lead">
+                <ol type = "a">
+                    <li>In this experiment, you will be asked to read two articles about public trust and stock prices and to evaluate 17 thumbnails per article  (34 thumbnails in total).</li>
+                    <li>When you enter the experiment, you will be asked to fill out a demographic survey.</li>
+                    <li>When you complete the survey, you will be asked to read the first article in three minutes and to solve a simple question about the article.
+                        A simple question can be solved by <strong> reading all the charts </strong> and <strong> contents of the article, </strong> so please read the article thoroughly.
+                        <strong>(IF YOU ANSWER WRONG, YOU WILL NOT RECEIVE COMPENSATION.) </strong></li>
+                    <li>Once you pass the simple question, you will be asked to evaluate 17 thumbnails for the article you read. </li>
+                    <li>You will be asked to provide your responses to five questions per article.</li>
+                    <li>For evaluation, you need to provide your responses as scores ranging from 1 to 7 with 7 being the highest score.</li>
+                    <li>You will be asked to repeat c. to f. for the second article.</li>
+                    <li>Once you complete the evaluation tasks, you will be given a token number on the screen. You need to keep the token number and enter it to the HIT on Amazon Mechanical Turk to get paid.</li>
+                    <li>The image below summarizes steps you will follow during the experiment. </li>
+                </ol>
+                </p>
+                <p> <center> <img src="{% static "instruction2.png" %}"  style="max-width: 80%;" /> </center></p>
+                <hr class="my-4">
+                <h2 class="display-4" style="color:red">CAUTION</h2>
+                <p class="lead">
+                    <ul>
+                        <li>You are<strong style="color:red"> NOT </strong>allowed to use the <strong>“back” </strong>  and <strong>“refresh”</strong> functions in the browse.
+                        <li>Furthermore, <strong> creating a new browser window or tab</strong> is <strong style="color:red"> NOT </strong>permitted.
+                        If any violation occurs, your participation will be canceled and you will not be compensated.   </li>
+                        <li>We will monitor your activity as you complete the steps listed above. Your recorded activity will be used to compute an `attention score’; <strong> if your attention score is too low,</strong> you will <strong style="color:red">NOT</strong> be compensated.  </li>
+                        <li>Please refer to our compensation standard below. </li>
+                            <ol type="A">
+                            <li>No Compensation Cases:</li>
+                                <ol type="i">
+                                    <li>When you use a low screen resolution,</li>
+                                    <li> When you use prohibited devices (e.g., mobile devices/tablets), </li>
+                                    <li> When you refresh the screen or go to a back page. </li> </ol>
+                            <li>Partial/prorated Compensation Cases:</li>
+                                <ol type="i">
+                                    <li> When you answer wrong for simple or random filtering questions, </li>
+                                    <li> When your participation finished incompletely for whatever reasons (e.g., no mouse movement for minutes), </li>
+                                    <li> When your attention score (hidden to you) is too low </li> </ol>
+                            <li>Full Compensation</li>
+                                <ol type="i">
+                                    <li> When you finish tasks without violating any rules in A-B. </li> </ol> </ol>
+                            <li>Your attention score will not be revealed to you during the experiment. Should you not agree to the activity tracking used to compute your attention score, you may not proceed to perform this experiment.
+                                <strong> If you agree, please proceed to complete the tasks.</strong> </li>
+                    </ul>
+                </p> <br>
+                <div class="text-right"> <button type="button"  onclick="location.href='{% url 'info' %}'" class="btn btn-info" id="write-info">Continue</button></div> <br>
+
+            </div></div>
+            <div id="cant-experiment" style="display:none;">
+              <p class="lead">  You should use a display with a  high resolution. If your display has an insufficient display resolution, you are not allowed to proceed.
+Participation with tablets is not permitted.</p>
+            </div>
+        </div>
+        </div>
+        {% block content %} {% endblock %}
+    </body>
+    <script>
+        console.log($(window).width())
+        console.log($(window).height())
+        console.log(window.screen.width)
+        console.log(window.screen.height)
+        console.log(window.screen.availWidth)
+        console.log(window.screen.availHeight)
+
+        /* Desktops and laptops */
+        if(1224 > window.screen.width){
+            $('#cant-experiment').css("display", "block");
+            $('#start-experiment').css("display", "none");
+        }
+
+        $('#show-irb').click(function(){window.open('/static/irb.pdf');});
+    </script>
+</html>
+<style>
+    .column {
+        flex: 50%;
+        padding: 5px;
+    }
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    .column2 {
+        width: 16.66%;
+        padding: 5px;
+    }
+
+    /* Clear floats after image containers */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .tnv-container1 tnv-container2{
+        margin: 5px;
+    }
+
+    ul {
+        font-size:15pt;
+    }
+    ol {
+        font-size:15pt;
+    }
+
+</style>
+<link rel="stylesheet" src="{% static "css/style.css" %}" />

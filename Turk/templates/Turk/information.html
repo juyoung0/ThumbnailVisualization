@@ -1,0 +1,134 @@
+{% extends 'turkMaster.html' %}
+{% block content %}
+    <div class="container">
+    <div class="jumbotron" id="information">
+          <h1 class="display-4">Demographic survey</h1>
+        <p> {{ message }} </p>
+            <form  action="/Turk/informationRank" method="post" id="info-form">
+                <div class="form-group">
+                    <label for="age">Your age?</label> <br>
+                    <input type="text" id="age" name="age" placeholder="Age" />
+                    <small id="ageHelp" class="form-text text-muted">Type in Number</small>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="gender">Your gender?</label> <br>
+                    <div id="gender-btn" class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-dark button1">Male</button>
+                        <button type="button" class="btn btn-outline-dark button1">Female</button>
+                    </div>
+                    <input type="text" id="gender" name="gender" style="display:none;"/>
+                    <!--<small id="genderHelp" class="form-text text-muted">M (Man) / F (Femail)</small>-->
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="education">Your final degree?</label> <br>
+                    <div id="education-btn" class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" name="1" class="btn btn-outline-dark button2">High School</button>
+                        <button type="button" name="2" class="btn btn-outline-dark button2">(University/College)</button>
+                        <button type="button" name="3" class="btn btn-outline-dark button2">M.S</button>
+                        <button type="button" name="4" class="btn btn-outline-dark button2">PhD</button>
+                    </div>
+                    <input type="text" id="education" name="education" style="display:none;"/>
+                    <!--<small id="genderHelp" class="form-text text-muted">M (Man) / F (Femail)</small>-->
+                </div>
+                <hr>
+
+                <div class="form-group">
+                    <label for="vis">Your visualization experiences? (How familiar are you with visualizations?)</label><br>
+                    <div class="row">
+                        <div class="col-1.5" align="center"><p class="left-text"> &nbsp;&nbsp;&nbsp;&nbsp;Not familiar at all </p> </div>
+                        <div class="col-4" align="center">
+                            <div id="vis-btn" class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" name="1" class="btn btn-outline-dark button3">1</button>
+                                <button type="button" name="2" class="btn btn-outline-dark button3">2</button>
+                                <button type="button" name="3" class="btn btn-outline-dark button3">3</button>
+                                <button type="button" name="4" class="btn btn-outline-dark button3">4</button>
+                                <button type="button" name="5" class="btn btn-outline-dark button3">5</button>
+                                <button type="button" name="6" class="btn btn-outline-dark button3">6</button>
+                                <button type="button" name="7" class="btn btn-outline-dark button3">7</button>
+                            </div>
+                            <input type="text" id="vis" name="vis"  style="display:none;"/>
+                        </div>
+                        <div class="col-1.5"  align="center"> <p class="right-text"> Very familiar </p> </div>
+                        <div class="col-5"></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="news">How frequent do you read online news articles per week?</label>
+                    <div id="news-btn" class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" name="1" class="btn btn-outline-dark button4">None</button>
+                        <button type="button" name="2" class="btn btn-outline-dark button4">less than 2</button>
+                        <button type="button" name="3" class="btn btn-outline-dark button4">less than 5</button>
+                        <button type="button" name="4" class="btn btn-outline-dark button4">less than 7</button>
+                        <button type="button" name="5" class="btn btn-outline-dark button4">more than 7 (everyday)</button>
+                    </div>
+                    <input type="text" id="news" name="news"  style="display:none;"/>
+                </div><br>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-info" id="info-button">Submit</button> </div>
+
+            </form>
+        </div>
+    </div>
+    </div>
+<script>
+    $("#introduction").css("display", "none");
+
+    $('#gender-btn button').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        $("#gender").val($(this).text());
+    });
+
+    $('#vis-btn button').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        $("#vis").val($(this).text());
+    });
+
+    $('#education-btn button').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        val = $(this).text();
+        if (val=="High School")
+            $("#education").val(1);
+        else if (val=="(University/College)")
+            $("#education").val(2);
+        else if (val=="M.S")
+            $("#education").val(3);
+        else if (val=="PhD")
+            $("#education").val(4);
+    });
+
+     $('#news-btn button').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
+        val = $(this).text();
+        if (val=="None")
+            $("#news").val(1);
+        else if (val=="less than 2")
+            $("#news").val(2);
+        else if (val=="less than 5")
+            $("#news").val(3);
+        else if (val=="less than 7")
+            $("#news").val(4);
+        else if (val=="more than 7 (everyday)")
+            $("#news").val(5);
+    });
+</script>
+<style>
+    label { font-size:15pt; }
+
+    .left-text{
+    float: left;
+    }
+
+    .right-text{
+    float: right;
+    }
+</style>
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+};
+</script>
+{% endblock %}

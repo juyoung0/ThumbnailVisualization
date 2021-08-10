@@ -1,0 +1,78 @@
+{% extends 'master3.html' %}
+{% load static %}
+{% block content %}
+<script>
+    var tn = {{ tn|safe }}
+</script>
+    <b-container fluid id="app1">
+        <b-row>
+        <div id="m-thumbnail-1">
+            <p> <img src="{% static "study3_tn\1.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-2">
+            <p> <img src="{% static "study3_tn\2.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-3">
+            <p> <img src="{% static "study3_tn\3.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-4">
+            <p> <img src="{% static "study3_tn\4.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-5" >
+            <p> <img src="{% static "study3_tn\5.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-6">
+            <p> <img src="{% static "study3_tn\6.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-7" >
+            <p> <img src="{% static "study3_tn\7.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        <div id="m-thumbnail-8" >
+            <p> <img src="{% static "study3_tn\8.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+        </div>
+        </b-row>
+
+        <b-row>
+            <h2> [[ title ]] - </h2>
+            <h3> Participants # : [[ people ]] </h3>
+        </b-row>
+
+        <b v-for="data in dataList">
+            <b-row>
+                <hr>
+                <b-col><h4>Description</h4>
+                <p> [[ data.description ]] </p>
+                </b-col>
+                <b-col>
+                    <show-table3
+                        v-bind:values="data.table"
+                        v-bind:columns="tableColumn">
+                    </show-table3>
+                </b-col>
+            </b-row>
+            <b-row>
+                <b-col v-for="item in data.child">
+                    <bar-chart
+                        v-bind:columns="columns"
+                        v-bind:label="item.text"
+                        v-bind:data="item.child"
+                    ></bar-chart>
+                </b-col>
+            </b-row>
+        </b>
+    </b-container>
+
+    <script>
+    var app1 = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#app1',
+          data: {
+            title: tn.title,
+            people: tn.people,
+            dataList: tn.child,
+            columns: tn.columns,
+            tableColumn: ['text', 'mean', 'std'],
+          }
+        })
+   </script>
+{% endblock %}

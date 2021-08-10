@@ -1,0 +1,511 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- You must include this JavaScript file -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static "css/style.css">
+
+</head>
+<body>
+<div class="container">
+    <div id="task_prediction" class="jumbotron" style="display:block">
+        <div id="prediction_instruction" class="jumbotron" style="display:block">
+            <h2 class="display-4"> Prediction </h2>
+            <p class="lead">
+            <ul>
+                <li>Once you click the ”Show thumbnail” below, a thumbnail designed for a news article will appear. You will evaluate the helpfulness of the thumbnail for predicting the article’s content. Your response will be entered as a score ranging from 1 to 7, with 7 being the highest score (the most helpful).</li>
+                <li>You will then be asked to write a prediction of what you expect the news article to be about in 300 characters or less.</li>
+            </ul>
+            </p>
+            <div class="text-right">
+                <button type="button" class="btn btn-info" id="btn-start-prediction"> Show Thumbnail </button>
+            </div><br>
+        </div>
+
+        <div id="show_thumbnail" class="jumbotron" style="display:none">
+            <h3 class = "display-5"> Thumbnail </h3>
+            <div class="thumbnail-1" style="display:none">
+                <img src="{% static "study3_tn\1.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-2" style="display:none">
+                <img src="{% static "study3_tn\2.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-3" style="display:none">
+                <img src="{% static "study3_tn\3.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-4" style="display:none">
+                <img src="{% static "study3_tn\4.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-5" style="display:none">
+                <img src="{% static "study3_tn\5.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-6" style="display:none">
+                <img src="{% static "study3_tn\6.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-7" style="display:none">
+                <img src="{% static "study3_tn\7.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <div class="thumbnail-8" style="display:none">
+                <img src="{% static "study3_tn\8.png" %}"  style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" />
+            </div>
+            <br>
+            <div id="helpful-chk1" style="display:none">
+                <h3 class="display-5"> Question</h3>
+                <p> How helpful is the thumbnail for you to predict the content of the  article?</p>
+                <div class="row">
+                    <div class="col-3" align="center"><p> Not helpful at all </p> </div>
+                    <div class="col-4" align="center">
+                        <div id="help-btn1" class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" name="1" class="btn btn-outline-dark button3">1</button>
+                            <button type="button" name="2" class="btn btn-outline-dark button3">2</button>
+                            <button type="button" name="3" class="btn btn-outline-dark button3">3</button>
+                            <button type="button" name="4" class="btn btn-outline-dark button3">4</button>
+                            <button type="button" name="5" class="btn btn-outline-dark button3">5</button>
+                            <button type="button" name="6" class="btn btn-outline-dark button3">6</button>
+                            <button type="button" name="7" class="btn btn-outline-dark button3">7</button>
+                        </div>
+                    </div>
+                    <div class="col-3"  align="center"> <p> Very helpful </p> </div>
+                    <div class="col-2"></div>
+                </div>
+                <br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-task-description"> Next </button></div>
+            </div>
+
+            <div id="get-description" style="display:none">
+                <h3 class = "display-5"> Description </h3>
+                <p> Predict what this article is about given the thumbnail (300 character limit). </p>
+                <textarea id="description" name="description" rows="5" cols="110" maxlength="300" >  </textarea><br>
+                <span style="color:#aaa;" id="counter">(0 / 300 characters)</span>
+                <br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-task-article"> Next </button></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="task_article"class="jumbotron" style="display:none">
+        <div id="article_instruction" style="display:none">
+            <h2 class="display-4">Read the news article</h2>
+            <p class="lead">
+            <ul>
+                <li>You will be asked to read the article in <strFong>3 minutes</strFong> and to solve a simple question about the article.</li>
+                <li>When you are ready to begin, click the “Show Article” button. </li>
+                <li>Note that you are given 3 minutes to read. <br>After 2 minutes, you can click the "Next" button to continue. <br>After 3 minutes, the article will disappear and you will be automatically proceeded to the next page. </li>
+                <li>Please read the news article carefully, as you will be asked to answer a simple question about the article. <strong> If your answer is wrong, you will<strong style="color:red"> NOT </strong>receive full compensation.</strong></li>
+            </ul>
+            </p>
+            <br>
+            <div class="text-right" style="float:right">
+                <button type="button" class="btn btn-info" id="btn-show-article">Show Article!</button></div> <br>
+        </div>
+
+        <div id="show_article" style="display:none">
+            <h3 style="color:red" id="timeLeft"> </h3>
+            <hr class="my-4">
+            <div id="article-1" style="display:none;">
+                <h3>Public Trust in Government: 1958-2017</h3>
+                <center><p><img src="{% static "article\1.png" %}"  style="max-width: 80%;" /></p></center>
+                <p>Public trust in the government remains near historic lows. Only 18% of Americans today say they can trust the government in Washington to do what is right “just about always” (3%) or “most of the time” (15%).</p>
+                <p>When the National Election Study began asking about trust in government in 1958, about three-quarters of Americans trusted the federal government to do the right thing almost always or most of the time. Trust in government began eroding during the 1960s, amid the escalation of the Vietnam War, and the decline continued in the 1970s with the Watergate scandal and worsening economic struggles. Confidence in government recovered in the mid-1980s before falling again in the mid-1990s. But as the economy grew in the late 1990s so too did confidence in government. Public trust reached a three-decade high shortly after the 9/11 terrorist attacks, but declined quickly thereafter. Since 2007, the share saying they can trust the government always or most of the time has not surpassed 30%.</p>
+                <p>Currently, 22% of Republicans and Republican-leaning independents say they can trust government, compared with 15% of Democrats and Democratic leaners. Throughout Obama’s tenure, more Democrats than Republicans reported trusting the government, though that has flipped since Trump’s election. Since the 1970s, trust in government has been consistently higher among members of the party that controls the White House than among the opposition party. However, Republicans have been much more reactive than Democrats to changes in political power. Republicans have expressed much higher levels of trust during Republican than during Democratic presidencies, while Democrats’ attitudes have tended to be more consistent, regardless of which party controls the White House.</p>
+                <hr class="my-4">
+            </div>
+            <div id="article-2" style="display:none;">
+                <h3>Apple’s Bad Month Is Getting Worse, Jeopardizing Its Status as Most Valuable Company</h3>
+                <center><p><img src="{% static "article\2.png" %}" style="max-width: 80%;" /></p></center>
+                <p> Stocks have had a bad month. Apple has had a worse one. </p>
+                <p> Shares of the iPhone maker were trading lower on Tuesday afternoon after comments Monday from President Trump suggesting that tariffs could be placed on the company’s devices imported from China. </p>
+                <p> Over the last month, Apple’s stock has fallen 20 percent, putting it on pace for its worst month since the financial crisis. </p>
+                <p> The tumble has shaved roughly $230 billion off Apple’s market value, placing it close to losing its position as the most valuable publicly traded company to Microsoft. </p>
+                <p> The two companies have competed since the mid-1970s, when both were founded. Microsoft dominated its rival in the 1990s, riding the popularity of its Windows operating system to become the largest publicly traded company by the end of the decade. During that time, Apple flirted with going broke. </p>
+                <p> But that dynamic reversed. Microsoft’s shares and its market value stagnated for more than a decade after the dot-com bust. Powered by the release of products like the iPod and later the iPhone, Apple’s shares marched higher. </p>
+                <p> By 2010, Apple’s market value had passed Microsoft’s, and the gap between the two continued to grow, reaching as much as $400 billion in 2015. As recently as a month ago, Apple was worth around $250 billion more than Microsoft. </p>
+                <p> In recent weeks, investors have grown increasingly concerned about iPhone sales. A number of Apple suppliers cut their financial outlooks for this quarter, suggesting there may be weaker demand for the latest models of the phone than expected. Last quarter, sales of iPhones accounted for nearly 60 percent of Apple’s revenue. </p>
+                <p> Microsoft has fared much better during November’s stock market rout. Late last month, Microsoft reported better-than-expected earnings driven by continued fast growth in its commercial cloud computing business. Its shares are up about 1 percent this month. </p>
+                <hr class="my-4">
+            </div>
+
+            <div class="text-right" id="finish-read-div" style="display:block;" >
+                <button type="button" class="btn btn-info" id="finish-read" disabled>Next</button>
+            </div><br>
+        </div>
+    </div>
+
+    <div id="attention_check" class="jumbotron" style="display:none">
+        <div id="valid-row1" class="jumbotron" style="display:none;">
+            <div class="instruction" id="trap1">
+                <div class="instruction">
+                    <h3 class="display-4">Attention Check</h3>
+                    <p class="lead">Select a word that was<strong style="color:red"> NOT </strong>SHOWN in the article?</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="lead">
+                <div id="trapbtn1" class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-dark button6">Watergate Scandal</button>
+                    <button type="button" class="btn btn-outline-dark button6">Immigration</button>
+                    <button type="button" class="btn btn-outline-dark button6">9.11 Terror </button>
+                    <button type="button" class="btn btn-outline-dark button6">Republicans</button>
+                    <button type="button" class="btn btn-outline-dark button6">The White House</button>
+                </div>
+                <hr>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="trap-ans1">Submit Answer</button></div><br>
+            </div>
+        </div>
+        <div id="valid-row2" class="jumbotron" style="display:none;">
+            <div class="instruction" id="trap2">
+                <div class="instruction">
+                    <h3 class="display-4">Attention Check</h3>
+                    <p class="lead">Choose a word that is<strong style="color:red"> NOT</strong> RELATED to the article</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="lead">
+                <div id="trapbtn2" class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-dark button7">Stock market</button>
+                    <button type="button" class="btn btn-outline-dark button7">Tariff</button>
+                    <button type="button" class="btn btn-outline-dark button7">Internet rate</button>
+                    <button type="button" class="btn btn-outline-dark button7">Financial crisis</button>
+                    <button type="button" class="btn btn-outline-dark button7">Microsoft</button>
+                </div>
+                <hr>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="trap-ans2">Submit Answer</button></div> <br>
+            </div>
+        </div>
+    </div>
+
+    <div id="modification-instruction" class="jumbotron" style="display:none">
+        <h2 class="display-4">Questions</h2>
+        <p class="lead">
+        <ul>
+            <li> After you click the “Continue” button, you will be shown the news article along with the thumbnail. You will evaluate the extent to which the thumbnail helps you to understand the content of the article.
+                <br>Your responses will be entered as scores ranging from 1 to 7, with 7 being the highest score. </li>
+            <li> After the evaluation, you will see the news article, thumbnail, and your own description. </li>
+        </ul>
+        </p>
+        <div class="text-right">
+            <button type="button" class="btn btn-info" id="btn-show-modification">Continue </button> </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid" style="display:none">
+    <div id="show-modification" class="jumbotron" style="display:none;">
+        <p> You can view the news article, thumbnail, and your description. Review all of these and answer the questions below. </p>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="m-article-1" style="display:none">
+                    <h3 class = "display-5"> Article</h3>
+                    <h4>Public Trust in Government: 1958-2017</h4>
+                    <p> <center><img id="full-article-img-1" src="{% static "images\article\1.png" %}" width="500"> </center></p>
+                    <p class="article-1" style="float:left">Public trust in the government remains near historic lows. Only 18% of Americans today say they can trust the government in Washington to do what is right “just about always” (3%) or “most of the time” (15%).</p>
+                    <p>When the National Election Study began asking about trust in government in 1958, about three-quarters of Americans trusted the federal government to do the right thing almost always or most of the time. Trust in government began eroding during the 1960s, amid the escalation of the Vietnam War, and the decline continued in the 1970s with the Watergate scandal and worsening economic struggles. Confidence in government recovered in the mid-1980s before falling again in the mid-1990s. But as the economy grew in the late 1990s so too did confidence in government. Public trust reached a three-decade high shortly after the 9/11 terrorist attacks, but declined quickly thereafter. Since 2007, the share saying they can trust the government always or most of the time has not surpassed 30%.</p>
+                    <p>Currently, 22% of Republicans and Republican-leaning independents say they can trust government, compared with 15% of Democrats and Democratic leaners. Throughout Obama’s tenure, more Democrats than Republicans reported trusting the government, though that has flipped since Trump’s election. Since the 1970s, trust in government has been consistently higher among members of the party that controls the White House than among the opposition party. However, Republicans have been much more reactive than Democrats to changes in political power. Republicans have expressed much higher levels of trust during Republican than during Democratic presidencies, while Democrats’ attitudes have tended to be more consistent, regardless of which party controls the White House.</p>
+                </div>
+                <div id="m-article-2" style="display:none">
+                    <h3 class = "display-5"> Article</h3>
+                    <h4>Apple’s Bad Month Is Getting Worse, Jeopardizing Its Status as Most Valuable Company</h4>
+                    <p> <center> <img id="full-article-img-2" src="{% static "images\article\2.png" %}" width="500"> </center> </p>
+                    <p> Stocks have had a bad month. Apple has had a worse one. </p>
+                    <p> Shares of the iPhone maker were trading lower on Tuesday afternoon after comments Monday from President Trump suggesting that tariffs could be placed on the company’s devices imported from China. </p>
+                    <p> Over the last month, Apple’s stock has fallen 20 percent, putting it on pace for its worst month since the financial crisis. </p>
+                    <p> The tumble has shaved roughly $230 billion off Apple’s market value, placing it close to losing its position as the most valuable publicly traded company to Microsoft. </p>
+                    <p> The two companies have competed since the mid-1970s, when both were founded. Microsoft dominated its rival in the 1990s, riding the popularity of its Windows operating system to become the largest publicly traded company by the end of the decade. During that time, Apple flirted with going broke. </p>
+                    <p> But that dynamic reversed. Microsoft’s shares and its market value stagnated for more than a decade after the dot-com bust. Powered by the release of products like the iPod and later the iPhone, Apple’s shares marched higher. </p>
+                    <p> By 2010, Apple’s market value had passed Microsoft’s, and the gap between the two continued to grow, reaching as much as $400 billion in 2015. As recently as a month ago, Apple was worth around $250 billion more than Microsoft. </p>
+                    <p> In recent weeks, investors have grown increasingly concerned about iPhone sales. A number of Apple suppliers cut their financial outlooks for this quarter, suggesting there may be weaker demand for the latest models of the phone than expected. Last quarter, sales of iPhones accounted for nearly 60 percent of Apple’s revenue. </p>
+                    <p> Microsoft has fared much better during November’s stock market rout. Late last month, Microsoft reported better-than-expected earnings driven by continued fast growth in its commercial cloud computing business. Its shares are up about 1 percent this month. </p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3 class = "display-5"> Thumbnail </h3>
+                <div id="m-thumbnail-1" style="display:none">
+                    <p> <img src="{% static "study3_tn\1.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-2" style="display:none">
+                    <p> <img src="{% static "study3_tn\2.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-3" style="display:none">
+                    <p> <img src="{% static "study3_tn\3.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-4" style="display:none">
+                    <p> <img src="{% static "study3_tn\4.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-5" style="display:none">
+                    <p> <img src="{% static "study3_tn\5.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-6" style="display:none">
+                    <p> <img src="{% static "study3_tn\6.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-7" style="display:none">
+                    <p> <img src="{% static "study3_tn\7.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <div id="m-thumbnail-8" style="display:none">
+                    <p> <img src="{% static "study3_tn\8.png" %}" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid"></p>
+                </div>
+                <br>
+
+                <div id="helpful-chk2" style="display:none">
+                    <h3 class="display-5"> Question</h3>
+                    <p> After you read the article, how helpful the thumbnail is in understanding the article? </p>
+                    <div class="row">
+                        <div class="col-3" align="center"><p> Not helpful at all </p> </div>
+                        <div class="col-4" align="center">
+                            <div id="help-btn2" class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" name="1" class="btn btn-outline-dark button3">1</button>
+                                <button type="button" name="2" class="btn btn-outline-dark button3">2</button>
+                                <button type="button" name="3" class="btn btn-outline-dark button3">3</button>
+                                <button type="button" name="4" class="btn btn-outline-dark button3">4</button>
+                                <button type="button" name="5" class="btn btn-outline-dark button3">5</button>
+                                <button type="button" name="6" class="btn btn-outline-dark button3">6</button>
+                                <button type="button" name="7" class="btn btn-outline-dark button3">7</button>
+                            </div>
+                        </div>
+                        <div class="col-3"  align="center"> <p> Very helpful </p> </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <br>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" id="btn-task-modification"> Next </button></div>
+                </div>
+
+                <div id="helpful-chk3" style="display:none">
+                    <h3 class="display-5"> Question</h3>
+                    <p> After this task, how helpful the thumbnail is in understanding the article? </p>
+                    <div class="row">
+                        <div class="col-3" align="center"><p> Not helpful at all </p> </div>
+                        <div class="col-4" align="center">
+                            <div id="help-btn3" class="btn-group" role="group" aria-label="Basic example">
+                                <button type="button" name="1" class="btn btn-outline-dark button3">1</button>
+                                <button type="button" name="2" class="btn btn-outline-dark button3">2</button>
+                                <button type="button" name="3" class="btn btn-outline-dark button3">3</button>
+                                <button type="button" name="4" class="btn btn-outline-dark button3">4</button>
+                                <button type="button" name="5" class="btn btn-outline-dark button3">5</button>
+                                <button type="button" name="6" class="btn btn-outline-dark button3">6</button>
+                                <button type="button" name="7" class="btn btn-outline-dark button3">7</button>
+                            </div>
+                        </div>
+                        <div class="col-3"  align="center"> <p> Very helpful </p> </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <br>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" id="btn-task-final"> Next </button></div>
+                </div>
+
+                <div id="modification" style="display:none">
+                    <h3 class="display-5"> Description </h3>
+                    <textarea id="show_description" cols="68" rows="5" readonly="readonly"></textarea>
+                    <br><br>
+                    <h3 class = "display-5"> Questions </h3>
+                    <div id="questions_tn" style="display:none; padding:10px; background-color:white;">
+                        <h4 class="display-5"> Considering the Thumbnail</h4>
+                        <p> 1. Describe how the <strong>thumbnail</strong> helped you to predict news article contents?<br>
+                            <textarea class="questions" id="ques1" cols="62" rows="2"> </textarea><br>
+                            <span style="color:#aaa;" id="counter1">(0 / 150 characters)</span>
+                        </p>
+                        <p> 2. What are the weaknesses of the <strong>thumbnail</strong> design? <br>
+                            <textarea class="questions" id="ques2" cols="62" rows="2"> </textarea><br>
+                            <span style="color:#aaa;" id="counter2">(0 / 150 characters)</span>
+                        </p>
+                        <p> 3. How could the design of the <strong>thumbnail</strong> be improved?<br>
+                            <textarea class="questions" id="ques3" cols="62" rows="2"> </textarea><br>
+                            <span style="color:#aaa;" id="counter3">(0 / 150 characters)</span>
+                        </p>
+                        <br>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-info" id="next_questions"> Next </button></div> <br>
+                    </div>
+                    <div id="questions_d"  style="display:none; padding:10px; background-color:white;">
+                        <h4 class="display-5"> Considering your Prediction</h4>
+                        <p> 1. Considering the news article, what important information did you miss or incorrectly describe in your <strong>prediction</strong>?<br>
+                            <textarea class="questions" id="ques4" cols="62" rows="2" > </textarea><br>
+                            <span style="color:#aaa;" id="counter4">(0 / 150 characters)</span>
+                        </p>
+                        <p> 2. If your <strong>prediction</strong> was incorrect or missed information, what factors contributed to these errors? <br>
+                            <textarea class="questions" id="ques5" cols="62" rows="2"> </textarea><br>
+                            <span style="color:#aaa;" id="counter5">(0 / 150 characters)</span>
+                        </p>
+                        <p> 3. How would you edit or augment your initial <strong>prediction</strong> based on the news article’ contents to produce a better description of the article?<br>
+                            <textarea class="questions" id="ques6" cols="62" rows="2" > </textarea><br>
+                            <span style="color:#aaa;" id="counter6">(0 / 150 characters)</span>
+                        </p>
+                        <p> 4. Improve your initial <strong>prediction</strong> to provide a better description of the article. <br>
+                            <textarea class="questions" id="ques7" cols="62" rows="4" > </textarea><br>
+                            <span style="color:#aaa;" id="counter7">(0 / 300 characters)</span>
+                        </p>
+                        <br>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-info" id="submit_modified"> Submit </button></div> <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="final-div" class="jumbotron" style="display:none">
+        <h2 class="display-4" id="final-message" >Almost Done! </h2>
+        <p class="lead">Congratulations! You completed your tasks. <br>
+            Please copy and paste the token below to the HIT page on Amazon Mechanical Turk. We will compensate your task after we review your responses. It will take no longer than a week.
+        </p>
+        <form  action="/Turk/submit_predict_answer" method="post" id="ans-form">
+            <div class="answer_sheet" style="display:none">
+                <input type="text" id="des" name="des" value="none" />
+                <input type="text" id="valid" name="valid" value="none" />
+                <input type="text" id="q1" name="q1" value="none" />
+                <input type="text" id="q2" name="q2" value="none" />
+                <input type="text" id="q3" name="q3" value="none" />
+                <input type="text" id="q4" name="q4" value="none" />
+                <input type="text" id="q5" name="q5" value="none" />
+                <input type="text" id="q6" name="q6" value="none" />
+                <input type="text" id="q7" name="q7" value="none" />
+                <input type="text" id="tn" name="tn" value="none" />
+                <input type="text" id="passTrap" name="passTrap" value=true />
+                <input type="text" id="width" name="width" value=0 />
+                <input type="text" id="height" name="height" value=0 />
+                <input type="text" id="help1" name="help1" value=0 />
+                <input type="text" id="help2" name="help2" value=0 />
+                <input type="text" id="help3" name="help3" value=0 />
+            </div>
+        </form>
+        <div class="text-right">
+            <button type="submit" form="ans-form" class="btn btn-info" id="final_submit" > Finish </button></div>
+    </div>
+
+    </div>
+</body>
+</html>
+
+<style>
+    .column {
+        flex: 50%;
+        padding: 2px;
+    }
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    .column2 {
+        width: 16.66%;
+        padding: 5px;
+    }
+
+    /* Clear floats after image containers */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .tnv-container1 tnv-container2{
+        margin: 5px;
+    }
+
+    .left-text{
+    float: left;
+    }
+
+    .right-text{
+    float: right;
+    }
+
+    .btn-group {
+      margin: 3px;
+    }
+
+    ul {
+        font-size : 15pt;
+    }
+
+    p {
+        font-size : 15pt;
+    }
+
+    h4 {
+        font-size : 15pt;
+    }
+    @media (min-width: 1200px) {
+        .container {max-width:1400px}
+    }
+    @media (min-width: 1900px) {
+        textarea { width:850px }
+        #full-article-img-1 { width:700px }
+        #full-article-img-2 { width:700px }
+    }
+</style>
+<script>
+    console.log({{ num|safe }});
+    $("#tn").val({{ num|safe }});
+
+    $("#width").val($(window).width());
+    $("#height").val($(window).height());
+
+
+    if ($(window).width()/window.screen.width < 0.8) {
+        alert("Your browser should be maximized and have \"100%\" font size ratio in the setting.");
+     }
+
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+
+        $(window).resize(function() {
+            var window_width = window.outerWidth;
+            $("#width").val($(window).width());
+            $("#height").val($(window).height());
+            if (window_width/window.screen.width < 0.8) {
+                    alert("Your browser should be maximized and have \"100%\" font size ratio in the setting.");
+                 }
+        });
+
+        function resizeWin() {
+            window.resizeBy(1800, 1000);
+            window.focus();
+        }
+
+    //복붙막기
+        $(function(){
+          var failMessage = function(){
+              return alert("Copy & Paste is NOT allowed."), false;
+          },
+          preventEvent = {
+           "keydown" : function(e) {
+             var keycode = function(e){
+                     return ('which' in e ? e.which : e.keyCode)
+                 }(e),
+                 ctrl_cv = (e.ctrlKey && (keycode == 118 || keycode == 86)),
+                 shift_insert = (e.shiftKey && keycode == 45);
+                 if (ctrl_cv || shift_insert){
+                     return failMessage();
+                 }
+           }
+           ,"mousedown" : function(e) {
+              var rightClick = (e.button == 2);
+                if(rightClick){
+                   return failMessage();
+                }
+           }
+           ,"contextmenu" : function(e) {
+                   return failMessage();
+           }
+         };
+        $(document).bind(preventEvent);
+        }());
+
+</script>
+
+<script type='text/javascript' src="{% static "js/mturk-predict.js" %}"></script>

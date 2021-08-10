@@ -1,0 +1,66 @@
+{% extends 'master2.html' %}
+{% block content %}
+<script>
+    var info = {{ user_info|safe }}
+</script>
+    <b-container fluid id="app1">
+        <b-row>
+            <h2> [[ title ]]  </h2>
+        </b-row>
+        <b-row v-for="data in dataList">
+            <b-container>
+                <h3> [[ data.text ]] </h3>
+                <b-row v-if="data.text == 'time'">
+                    <b-col>
+                        <show-table
+                            v-bind:values="data.stat.child"
+                            v-bind:columns='["text","min","sec"]'>
+                        </show-table>
+                    </b-col>
+                    <b-col>
+                        <bar-chart
+                            v-bind:columns="data.columns"
+                            v-bind:label="'x-axis = Minute'"
+                            v-bind:data="data.child"
+                    ></bar-chart>
+                    </b-col>
+                </b-row>
+                <b-row v-if="data.text != 'time' && data.text != 'gender' ">
+                    <b-col>
+                        <show-table3
+                            v-bind:values="data.stat.child"
+                            v-bind:columns='["text","val"]'>
+                        </show-table3>
+                    </b-col>
+                    <b-col>
+                        <bar-chart
+                                v-bind:columns="data.columns"
+                                v-bind:label="'Number of Participants'"
+                                v-bind:data="data.child"
+                        ></bar-chart>
+                    </b-col>
+                </b-row>
+                <b-row v-if="data.text == 'gender' ">
+                    <b-col>
+                        <bar-chart
+                                v-bind:columns="data.columns"
+                                v-bind:label="'Number of Participants'"
+                                v-bind:data="data.child"
+                        ></bar-chart>
+                    </b-col>
+                </b-row>
+            </b-container>
+        </b-row>
+    </b-container>
+
+    <script>
+    var app1 = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#app1',
+          data: {
+            title: 'Participant Information',
+            dataList: info,
+          }
+        })
+   </script>
+{% endblock %}

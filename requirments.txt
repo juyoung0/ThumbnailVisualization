@@ -1,0 +1,10 @@
+Django
+django-rest-framework
+djangorestframework
+numpy
+pandas
+scipy
+django-csv-exports
+
+
+

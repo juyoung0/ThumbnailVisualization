@@ -1,0 +1,666 @@
+{% load staticfiles %}
+<!-- You must include this JavaScript file -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<div class="container">
+    <div id="final-div" class="jumbotron" style="display:none;">
+            <h3 class="lead" id="final-message" >Finished! </h3>
+            <p class="lead">Congratulations! You completed your tasks.
+                Click below button to get the token.
+            </p>
+            <form  action="/Turk/submit_rank_answer" method="post" id="ans-form">
+                <div style="display:none;">
+                    <input type="text" id="nonsenseNum" name="nonsenseNum" value=0 />
+                    <input type="text" id="valid1" name="valid1" value=0 />
+                    <input type="text" id="valid2" name="valid2" value=0 />
+                    <input type="text" id="check1id" name="check1id" value=0 />
+                    <input type="text" id="check2id" name="check2id" value=0 />
+                    <input type="text" id="check1val1" name="check1val1" value=0 />
+                    <input type="text" id="check1val2" name="check1val2" value=0 />
+                    <input type="text" id="check1val3" name="check1val3" value=0 />
+                    <input type="text" id="check1val4" name="check1val4" value=0 />
+                    <input type="text" id="check1val5" name="check1val5" value=0 />
+                    <input type="text" id="check2val1" name="check2val1" value=0 />
+                    <input type="text" id="check2val2" name="check2val2" value=0 />
+                    <input type="text" id="check2val3" name="check2val3" value=0 />
+                    <input type="text" id="check2val4" name="check2val4" value=0 />
+                    <input type="text" id="check2val5" name="check2val5" value=0 />
+                    <input type="text" id="passTrap" name="passTrap" value=true />
+                    <input type="text" id="a1g1t1" name="a1g1t1" value=0 />
+                    <input type="text" id="a1g1t2" name="a1g1t2" value=0 />
+                    <input type="text" id="a1g1t3" name="a1g1t3" value=0 />
+                    <input type="text" id="a1g1t4" name="a1g1t4" value=0 />
+                    <input type="text" id="a1g1t5" name="a1g1t5" value=0 />
+                    <input type="text" id="a1g1t6" name="a1g1t6" value=0 />
+                    <input type="text" id="a1g1t7" name="a1g1t7" value=0 />
+                    <input type="text" id="a1g1t8" name="a1g1t8" value=0 />
+                    <input type="text" id="a1g1t9" name="a1g1t9" value=0 />
+                    <input type="text" id="a1g1t10" name="a1g1t10" value=0 />
+                    <input type="text" id="a1g1t11" name="a1g1t11" value=0 />
+                    <input type="text" id="a1g1t12" name="a1g1t12" value=0 />
+                    <input type="text" id="a1g1t13" name="a1g1t13" value=0 />
+                    <input type="text" id="a1g1t14" name="a1g1t14" value=0 />
+                    <input type="text" id="a1g1t15" name="a1g1t15" value=0 />
+                    <input type="text" id="a1g1t16" name="a1g1t16" value=0 />
+                    <input type="text" id="a1g1t17" name="a1g1t17" value=0 />
+                    <input type="text" id="a1g2t1" name="a1g2t1" value=0 />
+                    <input type="text" id="a1g2t2" name="a1g2t2" value=0 />
+                    <input type="text" id="a1g2t3" name="a1g2t3" value=0 />
+                    <input type="text" id="a1g2t4" name="a1g2t4" value=0 />
+                    <input type="text" id="a1g2t5" name="a1g2t5" value=0 />
+                    <input type="text" id="a1g2t6" name="a1g2t6" value=0 />
+                    <input type="text" id="a1g2t7" name="a1g2t7" value=0 />
+                    <input type="text" id="a1g2t8" name="a1g2t8" value=0 />
+                    <input type="text" id="a1g2t9" name="a1g2t9" value=0 />
+                    <input type="text" id="a1g2t10" name="a1g2t10" value=0 />
+                    <input type="text" id="a1g2t11" name="a1g2t11" value=0 />
+                    <input type="text" id="a1g2t12" name="a1g2t12" value=0 />
+                    <input type="text" id="a1g2t13" name="a1g2t13" value=0 />
+                    <input type="text" id="a1g2t14" name="a1g2t14" value=0 />
+                    <input type="text" id="a1g2t15" name="a1g2t15" value=0 />
+                    <input type="text" id="a1g2t16" name="a1g2t16" value=0 />
+                    <input type="text" id="a1g2t17" name="a1g2t17" value=0 />
+                    <input type="text" id="a1g3t1" name="a1g3t1" value=0 />
+                    <input type="text" id="a1g3t2" name="a1g3t2" value=0 />
+                    <input type="text" id="a1g3t3" name="a1g3t3" value=0 />
+                    <input type="text" id="a1g3t4" name="a1g3t4" value=0 />
+                    <input type="text" id="a1g3t5" name="a1g3t5" value=0 />
+                    <input type="text" id="a1g3t6" name="a1g3t6" value=0 />
+                    <input type="text" id="a1g3t7" name="a1g3t7" value=0 />
+                    <input type="text" id="a1g3t8" name="a1g3t8" value=0 />
+                    <input type="text" id="a1g3t9" name="a1g3t9" value=0 />
+                    <input type="text" id="a1g3t10" name="a1g3t10" value=0 />
+                    <input type="text" id="a1g3t11" name="a1g3t11" value=0 />
+                    <input type="text" id="a1g3t12" name="a1g3t12" value=0 />
+                    <input type="text" id="a1g3t13" name="a1g3t13" value=0 />
+                    <input type="text" id="a1g3t14" name="a1g3t14" value=0 />
+                    <input type="text" id="a1g3t15" name="a1g3t15" value=0 />
+                    <input type="text" id="a1g3t16" name="a1g3t16" value=0 />
+                    <input type="text" id="a1g3t17" name="a1g3t17" value=0 />
+                    <input type="text" id="a1g4t1" name="a1g4t1" value=0 />
+                    <input type="text" id="a1g4t2" name="a1g4t2" value=0 />
+                    <input type="text" id="a1g4t3" name="a1g4t3" value=0 />
+                    <input type="text" id="a1g4t4" name="a1g4t4" value=0 />
+                    <input type="text" id="a1g4t5" name="a1g4t5" value=0 />
+                    <input type="text" id="a1g4t6" name="a1g4t6" value=0 />
+                    <input type="text" id="a1g4t7" name="a1g4t7" value=0 />
+                    <input type="text" id="a1g4t8" name="a1g4t8" value=0 />
+                    <input type="text" id="a1g4t9" name="a1g4t9" value=0 />
+                    <input type="text" id="a1g4t10" name="a1g4t10" value=0 />
+                    <input type="text" id="a1g4t11" name="a1g4t11" value=0 />
+                    <input type="text" id="a1g4t12" name="a1g4t12" value=0 />
+                    <input type="text" id="a1g4t13" name="a1g4t13" value=0 />
+                    <input type="text" id="a1g4t14" name="a1g4t14" value=0 />
+                    <input type="text" id="a1g4t15" name="a1g4t15" value=0 />
+                    <input type="text" id="a1g4t16" name="a1g4t16" value=0 />
+                    <input type="text" id="a1g4t17" name="a1g4t17" value=0 />
+                    <input type="text" id="a1g5t1" name="a1g5t1" value=0 />
+                    <input type="text" id="a1g5t2" name="a1g5t2" value=0 />
+                    <input type="text" id="a1g5t3" name="a1g5t3" value=0 />
+                    <input type="text" id="a1g5t4" name="a1g5t4" value=0 />
+                    <input type="text" id="a1g5t5" name="a1g5t5" value=0 />
+                    <input type="text" id="a1g5t6" name="a1g5t6" value=0 />
+                    <input type="text" id="a1g5t7" name="a1g5t7" value=0 />
+                    <input type="text" id="a1g5t8" name="a1g5t8" value=0 />
+                    <input type="text" id="a1g5t9" name="a1g5t9" value=0 />
+                    <input type="text" id="a1g5t10" name="a1g5t10" value=0 />
+                    <input type="text" id="a1g5t11" name="a1g5t11" value=0 />
+                    <input type="text" id="a1g5t12" name="a1g5t12" value=0 />
+                    <input type="text" id="a1g5t13" name="a1g5t13" value=0 />
+                    <input type="text" id="a1g5t14" name="a1g5t14" value=0 />
+                    <input type="text" id="a1g5t15" name="a1g5t15" value=0 />
+                    <input type="text" id="a1g5t16" name="a1g5t16" value=0 />
+                    <input type="text" id="a1g5t17" name="a1g5t17" value=0 />
+                    <input type="text" id="a1g6t1" name="a1g6t1" value=0 />
+                    <input type="text" id="a1g6t2" name="a1g6t2" value=0 />
+                    <input type="text" id="a1g6t3" name="a1g6t3" value=0 />
+                    <input type="text" id="a1g6t4" name="a1g6t4" value=0 />
+                    <input type="text" id="a1g6t5" name="a1g6t5" value=0 />
+                    <input type="text" id="a1g6t6" name="a1g6t6" value=0 />
+                    <input type="text" id="a1g6t7" name="a1g6t7" value=0 />
+                    <input type="text" id="a1g6t8" name="a1g6t8" value=0 />
+                    <input type="text" id="a1g6t9" name="a1g6t9" value=0 />
+                    <input type="text" id="a1g6t10" name="a1g6t10" value=0 />
+                    <input type="text" id="a1g6t11" name="a1g6t11" value=0 />
+                    <input type="text" id="a1g6t12" name="a1g6t12" value=0 />
+                    <input type="text" id="a1g6t13" name="a1g6t13" value=0 />
+                    <input type="text" id="a1g6t14" name="a1g6t14" value=0 />
+                    <input type="text" id="a1g6t15" name="a1g6t15" value=0 />
+                    <input type="text" id="a1g6t16" name="a1g6t16" value=0 />
+                    <input type="text" id="a1g6t17" name="a1g6t17" value=0 />
+                    <input type="text" id="a1g7t1" name="a1g7t1" value=0 />
+                    <input type="text" id="a1g7t2" name="a1g7t2" value=0 />
+                    <input type="text" id="a1g7t3" name="a1g7t3" value=0 />
+                    <input type="text" id="a1g7t4" name="a1g7t4" value=0 />
+                    <input type="text" id="a1g7t5" name="a1g7t5" value=0 />
+                    <input type="text" id="a1g7t6" name="a1g7t6" value=0 />
+                    <input type="text" id="a1g7t7" name="a1g7t7" value=0 />
+                    <input type="text" id="a1g7t8" name="a1g7t8" value=0 />
+                    <input type="text" id="a1g7t9" name="a1g7t9" value=0 />
+                    <input type="text" id="a1g7t10" name="a1g7t10" value=0 />
+                    <input type="text" id="a1g7t11" name="a1g7t11" value=0 />
+                    <input type="text" id="a1g7t12" name="a1g7t12" value=0 />
+                    <input type="text" id="a1g7t13" name="a1g7t13" value=0 />
+                    <input type="text" id="a1g7t14" name="a1g7t14" value=0 />
+                    <input type="text" id="a1g7t15" name="a1g7t15" value=0 />
+                    <input type="text" id="a1g7t16" name="a1g7t16" value=0 />
+                    <input type="text" id="a1g7t17" name="a1g7t17" value=0 />
+                    <input type="text" id="a2g1t1" name="a2g1t1" value=0 />
+                    <input type="text" id="a2g1t2" name="a2g1t2" value=0 />
+                    <input type="text" id="a2g1t3" name="a2g1t3" value=0 />
+                    <input type="text" id="a2g1t4" name="a2g1t4" value=0 />
+                    <input type="text" id="a2g1t5" name="a2g1t5" value=0 />
+                    <input type="text" id="a2g1t6" name="a2g1t6" value=0 />
+                    <input type="text" id="a2g1t7" name="a2g1t7" value=0 />
+                    <input type="text" id="a2g1t8" name="a2g1t8" value=0 />
+                    <input type="text" id="a2g1t9" name="a2g1t9" value=0 />
+                    <input type="text" id="a2g1t10" name="a2g1t10" value=0 />
+                    <input type="text" id="a2g1t11" name="a2g1t11" value=0 />
+                    <input type="text" id="a2g1t12" name="a2g1t12" value=0 />
+                    <input type="text" id="a2g1t13" name="a2g1t13" value=0 />
+                    <input type="text" id="a2g1t14" name="a2g1t14" value=0 />
+                    <input type="text" id="a2g1t15" name="a2g1t15" value=0 />
+                    <input type="text" id="a2g1t16" name="a2g1t16" value=0 />
+                    <input type="text" id="a2g1t17" name="a2g1t17" value=0 />
+                    <input type="text" id="a2g2t1" name="a2g2t1" value=0 />
+                    <input type="text" id="a2g2t2" name="a2g2t2" value=0 />
+                    <input type="text" id="a2g2t3" name="a2g2t3" value=0 />
+                    <input type="text" id="a2g2t4" name="a2g2t4" value=0 />
+                    <input type="text" id="a2g2t5" name="a2g2t5" value=0 />
+                    <input type="text" id="a2g2t6" name="a2g2t6" value=0 />
+                    <input type="text" id="a2g2t7" name="a2g2t7" value=0 />
+                    <input type="text" id="a2g2t8" name="a2g2t8" value=0 />
+                    <input type="text" id="a2g2t9" name="a2g2t9" value=0 />
+                    <input type="text" id="a2g2t10" name="a2g2t10" value=0 />
+                    <input type="text" id="a2g2t11" name="a2g2t11" value=0 />
+                    <input type="text" id="a2g2t12" name="a2g2t12" value=0 />
+                    <input type="text" id="a2g2t13" name="a2g2t13" value=0 />
+                    <input type="text" id="a2g2t14" name="a2g2t14" value=0 />
+                    <input type="text" id="a2g2t15" name="a2g2t15" value=0 />
+                    <input type="text" id="a2g2t16" name="a2g2t16" value=0 />
+                    <input type="text" id="a2g2t17" name="a2g2t17" value=0 />
+                    <input type="text" id="a2g3t1" name="a2g3t1" value=0 />
+                    <input type="text" id="a2g3t2" name="a2g3t2" value=0 />
+                    <input type="text" id="a2g3t3" name="a2g3t3" value=0 />
+                    <input type="text" id="a2g3t4" name="a2g3t4" value=0 />
+                    <input type="text" id="a2g3t5" name="a2g3t5" value=0 />
+                    <input type="text" id="a2g3t6" name="a2g3t6" value=0 />
+                    <input type="text" id="a2g3t7" name="a2g3t7" value=0 />
+                    <input type="text" id="a2g3t8" name="a2g3t8" value=0 />
+                    <input type="text" id="a2g3t9" name="a2g3t9" value=0 />
+                    <input type="text" id="a2g3t10" name="a2g3t10" value=0 />
+                    <input type="text" id="a2g3t11" name="a2g3t11" value=0 />
+                    <input type="text" id="a2g3t12" name="a2g3t12" value=0 />
+                    <input type="text" id="a2g3t13" name="a2g3t13" value=0 />
+                    <input type="text" id="a2g3t14" name="a2g3t14" value=0 />
+                    <input type="text" id="a2g3t15" name="a2g3t15" value=0 />
+                    <input type="text" id="a2g3t16" name="a2g3t16" value=0 />
+                    <input type="text" id="a2g3t17" name="a2g3t17" value=0 />
+                    <input type="text" id="a2g4t1" name="a2g4t1" value=0 />
+                    <input type="text" id="a2g4t2" name="a2g4t2" value=0 />
+                    <input type="text" id="a2g4t3" name="a2g4t3" value=0 />
+                    <input type="text" id="a2g4t4" name="a2g4t4" value=0 />
+                    <input type="text" id="a2g4t5" name="a2g4t5" value=0 />
+                    <input type="text" id="a2g4t6" name="a2g4t6" value=0 />
+                    <input type="text" id="a2g4t7" name="a2g4t7" value=0 />
+                    <input type="text" id="a2g4t8" name="a2g4t8" value=0 />
+                    <input type="text" id="a2g4t9" name="a2g4t9" value=0 />
+                    <input type="text" id="a2g4t10" name="a2g4t10" value=0 />
+                    <input type="text" id="a2g4t11" name="a2g4t11" value=0 />
+                    <input type="text" id="a2g4t12" name="a2g4t12" value=0 />
+                    <input type="text" id="a2g4t13" name="a2g4t13" value=0 />
+                    <input type="text" id="a2g4t14" name="a2g4t14" value=0 />
+                    <input type="text" id="a2g4t15" name="a2g4t15" value=0 />
+                    <input type="text" id="a2g4t16" name="a2g4t16" value=0 />
+                    <input type="text" id="a2g4t17" name="a2g4t17" value=0 />
+                    <input type="text" id="a2g5t1" name="a2g5t1" value=0 />
+                    <input type="text" id="a2g5t2" name="a2g5t2" value=0 />
+                    <input type="text" id="a2g5t3" name="a2g5t3" value=0 />
+                    <input type="text" id="a2g5t4" name="a2g5t4" value=0 />
+                    <input type="text" id="a2g5t5" name="a2g5t5" value=0 />
+                    <input type="text" id="a2g5t6" name="a2g5t6" value=0 />
+                    <input type="text" id="a2g5t7" name="a2g5t7" value=0 />
+                    <input type="text" id="a2g5t8" name="a2g5t8" value=0 />
+                    <input type="text" id="a2g5t9" name="a2g5t9" value=0 />
+                    <input type="text" id="a2g5t10" name="a2g5t10" value=0 />
+                    <input type="text" id="a2g5t11" name="a2g5t11" value=0 />
+                    <input type="text" id="a2g5t12" name="a2g5t12" value=0 />
+                    <input type="text" id="a2g5t13" name="a2g5t13" value=0 />
+                    <input type="text" id="a2g5t14" name="a2g5t14" value=0 />
+                    <input type="text" id="a2g5t15" name="a2g5t15" value=0 />
+                    <input type="text" id="a2g5t16" name="a2g5t16" value=0 />
+                    <input type="text" id="a2g5t17" name="a2g5t17" value=0 />
+                    <input type="text" id="a2g6t1" name="a2g6t1" value=0 />
+                    <input type="text" id="a2g6t2" name="a2g6t2" value=0 />
+                    <input type="text" id="a2g6t3" name="a2g6t3" value=0 />
+                    <input type="text" id="a2g6t4" name="a2g6t4" value=0 />
+                    <input type="text" id="a2g6t5" name="a2g6t5" value=0 />
+                    <input type="text" id="a2g6t6" name="a2g6t6" value=0 />
+                    <input type="text" id="a2g6t7" name="a2g6t7" value=0 />
+                    <input type="text" id="a2g6t8" name="a2g6t8" value=0 />
+                    <input type="text" id="a2g6t9" name="a2g6t9" value=0 />
+                    <input type="text" id="a2g6t10" name="a2g6t10" value=0 />
+                    <input type="text" id="a2g6t11" name="a2g6t11" value=0 />
+                    <input type="text" id="a2g6t12" name="a2g6t12" value=0 />
+                    <input type="text" id="a2g6t13" name="a2g6t13" value=0 />
+                    <input type="text" id="a2g6t14" name="a2g6t14" value=0 />
+                    <input type="text" id="a2g6t15" name="a2g6t15" value=0 />
+                    <input type="text" id="a2g6t16" name="a2g6t16" value=0 />
+                    <input type="text" id="a2g6t17" name="a2g6t17" value=0 />
+                    <input type="text" id="a2g7t1" name="a2g7t1" value=0 />
+                    <input type="text" id="a2g7t2" name="a2g7t2" value=0 />
+                    <input type="text" id="a2g7t3" name="a2g7t3" value=0 />
+                    <input type="text" id="a2g7t4" name="a2g7t4" value=0 />
+                    <input type="text" id="a2g7t5" name="a2g7t5" value=0 />
+                    <input type="text" id="a2g7t6" name="a2g7t6" value=0 />
+                    <input type="text" id="a2g7t7" name="a2g7t7" value=0 />
+                    <input type="text" id="a2g7t8" name="a2g7t8" value=0 />
+                    <input type="text" id="a2g7t9" name="a2g7t9" value=0 />
+                    <input type="text" id="a2g7t10" name="a2g7t10" value=0 />
+                    <input type="text" id="a2g7t11" name="a2g7t11" value=0 />
+                    <input type="text" id="a2g7t12" name="a2g7t12" value=0 />
+                    <input type="text" id="a2g7t13" name="a2g7t13" value=0 />
+                    <input type="text" id="a2g7t14" name="a2g7t14" value=0 />
+                    <input type="text" id="a2g7t15" name="a2g7t15" value=0 />
+                    <input type="text" id="a2g7t16" name="a2g7t16" value=0 />
+                    <input type="text" id="a2g7t17" name="a2g7t17" value=0 />
+                </div>
+            </form>
+            <div class="text-right" style="float:right">
+                <button type="submit" form="ans-form" class="btn btn-info" id="final-submit">Submit!</button> </div><br>
+        </div>
+    <div class="jumbotron" id="task-article">
+                <div id="article-instruction">
+                    <h2 class="display-4">Read the news article</h2>
+                     <p class="lead">
+                         <ul>
+                            <li>You will be asked to read the first article in <strong>3 minutes</strong> and to solve a simple question about the article.</li>
+                            <li>When you are ready to begin, click the “Show Article” button. </li>
+                            <li>Note that you are given 3 minutes to read. <br>After 2 minutes, you can click the "Next" button to continue. <br>After 3 minutes, the article will disappear and you will be automatically proceeded to the next page. </li>
+                            <li>Please read the news article carefully as you will be asked to answer a simple question about the article. If your answer is wrong, you will<strong style="color:red"> NOT </strong>be compensated.</li>
+                        </ul>
+                     </p>
+                </div> <br>
+                <div class="text-right" style="float:right">
+                    <button type="button" class="btn btn-info" id="show-article">Show Article!</button></div> <br>
+            <h3 style="color:red" id="timeLeft"> </h3>
+               <hr class="my-4">
+                <div id="article-1" style="display:none;">
+                    <h3>Public Trust in Government: 1958-2017</h3>
+                    <p><center><img src="{% static "images\article\1.png" %}"  style="max-width: 80%;" /></center></p>
+                    <p>Public trust in the government remains near historic lows. Only 18% of Americans today say they can trust the government in Washington to do what is right “just about always” (3%) or “most of the time” (15%).</p>
+                    <p>When the National Election Study began asking about trust in government in 1958, about three-quarters of Americans trusted the federal government to do the right thing almost always or most of the time. Trust in government began eroding during the 1960s, amid the escalation of the Vietnam War, and the decline continued in the 1970s with the Watergate scandal and worsening economic struggles. Confidence in government recovered in the mid-1980s before falling again in the mid-1990s. But as the economy grew in the late 1990s so too did confidence in government. Public trust reached a three-decade high shortly after the 9/11 terrorist attacks, but declined quickly thereafter. Since 2007, the share saying they can trust the government always or most of the time has not surpassed 30%.</p>
+                    <p>Currently, 22% of Republicans and Republican-leaning independents say they can trust government, compared with 15% of Democrats and Democratic leaners. Throughout Obama’s tenure, more Democrats than Republicans reported trusting the government, though that has flipped since Trump’s election. Since the 1970s, trust in government has been consistently higher among members of the party that controls the White House than among the opposition party. However, Republicans have been much more reactive than Democrats to changes in political power. Republicans have expressed much higher levels of trust during Republican than during Democratic presidencies, while Democrats’ attitudes have tended to be more consistent, regardless of which party controls the White House.</p>
+                    <hr class="my-4">
+                </div>
+                <div id="article-2" style="display:none;">
+                    <h3>Apple’s Bad Month Is Getting Worse, Jeopardizing Its Status as Most Valuable Company</h3>
+                    <p><center><img src="{% static "images\article\2.png" %}" style="max-width: 80%;" /></center></p>
+                    <p> Stocks have had a bad month. Apple has had a worse one. </p>
+                    <p> Shares of the iPhone maker were trading lower on Tuesday afternoon after comments Monday from President Trump suggesting that tariffs could be placed on the company’s devices imported from China. </p>
+                    <p> Over the last month, Apple’s stock has fallen 20 percent, putting it on pace for its worst month since the financial crisis. </p>
+                    <p> The tumble has shaved roughly $230 billion off Apple’s market value, placing it close to losing its position as the most valuable publicly traded company to Microsoft. </p>
+                    <p> The two companies have competed since the mid-1970s, when both were founded. Microsoft dominated its rival in the 1990s, riding the popularity of its Windows operating system to become the largest publicly traded company by the end of the decade. During that time, Apple flirted with going broke. </p>
+                    <p> But that dynamic reversed. Microsoft’s shares and its market value stagnated for more than a decade after the dot-com bust. Powered by the release of products like the iPod and later the iPhone, Apple’s shares marched higher. </p>
+                    <p> By 2010, Apple’s market value had passed Microsoft’s, and the gap between the two continued to grow, reaching as much as $400 billion in 2015. As recently as a month ago, Apple was worth around $250 billion more than Microsoft. </p>
+                    <p> In recent weeks, investors have grown increasingly concerned about iPhone sales. A number of Apple suppliers cut their financial outlooks for this quarter, suggesting there may be weaker demand for the latest models of the phone than expected. Last quarter, sales of iPhones accounted for nearly 60 percent of Apple’s revenue. </p>
+                    <p> Microsoft has fared much better during November’s stock market rout. Late last month, Microsoft reported better-than-expected earnings driven by continued fast growth in its commercial cloud computing business. Its shares are up about 1 percent this month. </p>
+                <hr class="my-4">
+                </div>
+                <div class="text-right" id="finish-read-div" style="display:none;" >
+                    <button type="button" class="btn btn-info" id="finish-read" disabled>Next</button>
+                </div><br>
+                <div id="task-instruction" style="display:none;">
+                     <h2 class="display-4">Start Evaluation</h2>
+                     <p class="lead">
+                         <ul>
+                            <li>You will be asked to evaluate 17 thumbnails for the article you read. </li>
+                            <li>You will be asked to provide your responses to five questions per thumbnail.</li>
+                            <li>You need to provide your responses as scores ranging from 1 to 7 with 7 being the highest score. </li>
+                        </ul>
+                     </p>
+                </div> <br>
+                <div class="text-right" style="float:right">
+                    <button type="button" class="btn btn-info" id="gotoTask" style="display:none;">Start</button></div>
+            </div>
+    <div class="jumbotron" id="break-time" style="display:none;">
+        <h3 class="display-4">Break time!</h3>
+        <h3 style="color:red" id="breaktimeLeft"> </h3>
+        <p class="lead">
+        You can take a break up to 5 minutes. If you want to proceed anytime during your break, click the "Next" Button.
+        <strong style="color:red"> NOTE! </strong> This page automatically proceeds to the next page after 5 minutes.
+        If you are not responding after the next page is shown, we may stop your participation.</p>
+        <hr class="my-4">
+        <div class="text-right">
+            <button type="button" class="btn btn-info" id="finish-break">Next</button></div><br>
+        </div>
+    <div class="container" id="task-tnvs" style="display:none;">
+                    <!-- Your image file URLs will be substituted for the ${image_url} variable in the src attribute
+                           below when you publish a batch with a CSV input file containing multiple image file URLs -->
+                <h3 class="display-4">Evaluation</h3>
+                <div id="task-row" class="row">
+                <div class="column" style="text-align:center; margin-top:auto; margin-bottom:auto">
+                    <div id="tn-title"></div>
+                    <br>
+                    <p><img id="task-img" src="" style="max-width: 100%; height: 57.73mm; width: 76.97mm; border:1px solid" /></p>
+                </div>
+
+            <div class="column">
+                <div class="container" id="ranking-button" style="display:none;">
+                    <div class="row"><h4>This thumbnail effectively communicates the main point of the article.</h4></div><br>
+                    <div align="center" class="row">
+                        <div class="col">
+                            <p class="left-text" style="vertical-align:middle;">Strongly disagree</p> </div>
+                        <div class="col">
+                        <div id="button-1" class="btn-group"  role="group" aria-label="Basic example" style="vertical-align:middle;">
+                            <button type="button" class="btn btn-outline-secondary button1">1</button>
+                            <button type="button" class="btn btn-outline-secondary button1">2</button>
+                            <button type="button" class="btn btn-outline-secondary button1">3</button>
+                            <button type="button" class="btn btn-outline-secondary button1">4</button>
+                            <button type="button" class="btn btn-outline-secondary button1">5</button>
+                            <button type="button" class="btn btn-outline-secondary button1">6</button>
+                            <button type="button" class="btn btn-outline-secondary button1">7</button>
+                        </div> </div>
+                        <div class="col">
+                            <p class="right-text"style="vertical-align:middle;">Strongly agree</p></div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row"><h4>This thumbnail effectively communicates the context of the article.</h4></div><br>
+                    <div align="center" class="row"><br>
+                        <div class="col">
+                            <p class="left-text">Strongly disagree</p> </div>
+                        <div class="col">
+                        <div id="button-2" class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-outline-secondary button2">1</button>
+                            <button type="button" class="btn btn-outline-secondary button2">2</button>
+                            <button type="button" class="btn btn-outline-secondary button2">3</button>
+                            <button type="button" class="btn btn-outline-secondary button2">4</button>
+                            <button type="button" class="btn btn-outline-secondary button2">5</button>
+                            <button type="button" class="btn btn-outline-secondary button2">6</button>
+                            <button type="button" class="btn btn-outline-secondary button2">7</button>
+                        </div> </div>
+                        <div class="col">
+                            <p class="right-text">Strongly agree</p></div>
+                    </div>
+
+                    <div class="nonsense" style="display:none">
+                        <hr class="my-4">
+                        <div id="nonsense-1" style="display:none">
+                            <div class="row"> <h4>How many legs does a cat have?</h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-1" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                        <div id="nonsense-2" style="display:none">
+                            <div class="row"> <h4>How many letters are there in "Amazon"?</h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-2" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                        <div id="nonsense-3" style="display:none">
+                            <div class="row"> <h4>How many ears does a dog have?</h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-3" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                        <div id="nonsense-4" style="display:none">
+                            <div class="row"> <h4>How many legs does a duck have?</h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-4" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                        <div id="nonsense-5" style="display:none">
+                            <div class="row"> <h4>How many letters are there in "Apple"?</h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-5" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                        <div id="nonsense-6" style="display:none">
+                            <div class="row"> <h4>How many tails does a horse have? </h4></div><br>
+                            <div align="center" class="row"><br>
+                                <div class="col"></div>
+                                <div class="col">
+                                <div id="button-nonsense-6" class="btn-group" role="group" arial-label="Basic example">
+                                    <button type="button" class="btn btn-outline-secondary button1">1</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">2</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">3</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">4</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">5</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">6</button>
+                                    <button type="button" class="btn btn-outline-secondary button1">7</button>
+                                </div>
+                                </div>
+                                <div class="col"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+                    <div class="row"><h4>This thumbnail would draw my attention if I encountered it as I was browsing news articles</h4></div><br>
+                    <div class="row" align="center">
+                        <div class="col">
+                            <p class="left-text">Strongly disagree</p></div>
+                        <div class="col">
+                        <div id="button-3" class="btn-group" role="group" aria-label="Basic example">
+                             <button type="button" class="btn btn-outline-secondary button3">1</button>
+                            <button type="button" class="btn btn-outline-secondary button3">2</button>
+                            <button type="button" class="btn btn-outline-secondary button3">3</button>
+                            <button type="button" class="btn btn-outline-secondary button3">4</button>
+                            <button type="button" class="btn btn-outline-secondary button3">5</button>
+                            <button type="button" class="btn btn-outline-secondary button3">6</button>
+                            <button type="button" class="btn btn-outline-secondary button3">7</button>
+                        </div></div>
+                        <div class="col">
+                            <p class="right-text">Strongly agree</p> </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row"><h4>This thumbnail is pleasing to look at.</h4></div><br>
+                    <div class="row" align="center">
+                        <div class="col">
+                            <p class="left-text">Strongly disagree</p></div>
+                        <div class="col">
+                        <div id="button-4" class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary button4">1</button>
+                            <button type="button" class="btn btn-outline-secondary button4">2</button>
+                            <button type="button" class="btn btn-outline-secondary button4">3</button>
+                            <button type="button" class="btn btn-outline-secondary button4">4</button>
+                            <button type="button" class="btn btn-outline-secondary button4">5</button>
+                            <button type="button" class="btn btn-outline-secondary button4">6</button>
+                            <button type="button" class="btn btn-outline-secondary button4">7</button>
+                        </div></div>
+                        <div class="col">
+                            <p class="right-text">Strongly agree</p></div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="row"><h4>Overall,  how would you rate this thumbnail design?</h4></div><br>
+                    <div class="row" align="center">
+                        <div class="col">
+                            <p class="left-text"> Low </p>
+                        </div>
+                        <div class="col">
+                        <div id="button-5" class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary button5">1</button>
+                            <button type="button" class="btn btn-outline-secondary button5">2</button>
+                            <button type="button" class="btn btn-outline-secondary button5">3</button>
+                            <button type="button" class="btn btn-outline-secondary button5">4</button>
+                            <button type="button" class="btn btn-outline-secondary button5">5</button>
+                            <button type="button" class="btn btn-outline-secondary button5">6</button>
+                            <button type="button" class="btn btn-outline-secondary button5">7</button>
+                        </div></div>
+                        <div class="col">
+                            <p class="right-text"> High </p>
+                        </div>
+                    </div>
+                    <hr class="my-4">
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" id="gotoNext">Next Thumbnail</button></div> <br>
+                </div>
+            </div>
+            </div>
+            </div>
+    <div id="valid-row1" class="jumbotron" style="display:none;">
+               <div class="instruction" id="trap1">
+                    <div class="instruction">
+                     <h3 class="display-4">Attention Check</h3>
+                        <p class="lead">Select a word that was<strong style="color:red"> NOT </strong>SHOWN in the article?</p>
+                    </div>
+                </div>
+                    <hr class="my-4">
+            <div class="lead">
+                    <div id="trapbtn1" class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-dark button6">Watergate Scandal</button>
+                        <button type="button" class="btn btn-outline-dark button6">Immigration</button>
+                        <button type="button" class="btn btn-outline-dark button6">9.11 Terror </button>
+                        <button type="button" class="btn btn-outline-dark button6">Republicans</button>
+                        <button type="button" class="btn btn-outline-dark button6">The White House</button>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                        <button type="button" class="btn btn-info" id="trap-ans1">Submit Answer</button></div><br>
+            </div>
+        </div>
+    <div id="valid-row2" class="jumbotron" style="display:none;">
+               <div class="instruction" id="trap2">
+                    <div class="instruction">
+                     <h3 class="display-4">Attention Check</h3>
+                     <p class="lead">Choose a word that is<strong style="color:red"> NOT</strong> RELATED to the article</p>
+                    </div>
+                </div>
+                    <hr class="my-4">
+            <div class="lead">
+                    <div id="trapbtn2" class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-dark button7">Stock market</button>
+                        <button type="button" class="btn btn-outline-dark button7">Tariff</button>
+                        <button type="button" class="btn btn-outline-dark button7">Internet rate</button>
+                        <button type="button" class="btn btn-outline-dark button7">Financial crisis</button>
+                        <button type="button" class="btn btn-outline-dark button7">Microsoft</button>
+                    </div>
+                    <hr>
+                    <div class="text-right">
+                    <button type="button" class="btn btn-info" id="trap-ans2">Submit Answer</button></div> <br>
+            </div>
+        </div>
+</div>
+<style>
+    .column {
+        flex: 50%;
+        padding: 2px;
+    }
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    .column2 {
+        width: 16.66%;
+        padding: 5px;
+    }
+
+    /* Clear floats after image containers */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .tnv-container1 tnv-container2{
+        margin: 5px;
+    }
+
+    .left-text{
+    float: left;
+    }
+
+    .right-text{
+    float: right;
+    }
+
+    .btn-group {
+      margin: 3px;
+    }
+
+    ul {
+        font-size : 15pt;
+    }
+
+    p {
+        font-size : 15pt;
+    }
+
+    h4 {
+        font-size : 15pt;
+    }
+
+</style>
+<script>
+$("#introduction").css("display", "none");
+</script>
+<script type='text/javascript' src="{% static "js/mturk-rank.js" %}"></script>
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+};
+</script>

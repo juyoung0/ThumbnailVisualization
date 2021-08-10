@@ -1,0 +1,265 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/style.css">
+</head>
+<body>
+<div class="container" style="display:block">
+    <div id="compare-instruction" class="jumbotron" style="display:block">
+        <h2 class="display-4">Instruction</h2>
+        <p class="lead">
+        <ul>
+            <li>When you click the 'Next' button, you will see four thumbnails for an article.</li>
+            <li>You will choose a thumbnail according to the first question and describe your reason of choice.</li>
+        </ul>
+        </p>
+        <br>
+        <div class="text-right">
+            <button type="button" class="btn btn-info" id="btn-show-compare"> Next</button></div>
+    </div>
+
+    <div id="final-div" class="jumbotron" style="display:none">
+        <h2 class="display-4" id="final-message">Almost Done!</h2>
+        <p class="lead">Congratulations! You completed your tasks. <br>
+            Please copy and paste the token below to the HIT page on Amazon Mechanical Turk. We will compensate your task after we review your responses. It will take no longer than a week.
+        </p>
+        <form  action="/Turk/submit_compare_answer" method="post" id="ans-form">
+            <div class="answer_sheet" style="display:none">
+                <input type="text" id="q1" name="q1" value="None" />
+                <input type="text" id="q2" name="q2" value="None" />
+                <input type="text" id="q3a" name="q3a" value="None" />
+                <input type="text" id="q3b" name="q3b" value="None" />
+                <input type="text" id="q3c" name="q3c" value="None" />
+                <input type="text" id="q3d" name="q3d" value="None" />
+                <input type="text" id="width" name="width" value=0 />
+                <input type="text" id="height" name="height" value=0 />
+                <input type="text" id="trap" name="trap" value="" />
+                <input type="text" id="passTrap" name="passTrap" value=true />
+            </div>
+        </form>
+        <div class="text-right">
+            <button type="submit" form="ans-form" class="btn btn-info" id="final_submit" > Finish </button></div>
+    </div>
+
+    <div id="show-compare" style="display:none">
+        <div id="tnv" style="padding-top:30px">
+            <table style="margin:auto">
+                <tr class="text-center">
+                    <th>
+                        <h3>A</h3> </th>
+                    <th>
+                        <h3>B</h3> </th>
+                    <th>
+                        <h3>C</h3> </th>
+                    <th>
+                        <h3>D</h3> </th>
+                </tr>
+                <tr>
+                    <td style="padding:10px">
+                        <img id="tn1" src="" style="max-width:100%; height:100mm; width:83mm"> </td>
+                    <td style="padding:10px">
+                        <img id="tn2" src="" style="max-width:100%; height:100mm; width:83mm"> </td>
+                    <td style="padding:10px">
+                        <img id="tn3" src="" style="max-width:100%; height:100mm; width:83mm"> </td>
+                    <td style="padding:10px">
+                        <img id="tn4" src="" style="max-width:100%; height:100mm; width:83mm"> </td>
+                </tr>
+            </table>
+        </div>
+        <br><br><br>
+        <div id="questions" class="jumbotron" style="padding-top:32px">
+            <div id="question-1" class="text-center" style="display:block">
+                <h3>Which one would you be the most intrigued to read?</h3><br>
+                <div id="button-1" class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-secondary button3">A</button>
+                    <button type="button" class="btn btn-outline-secondary button3">B</button>
+                    <button type="button" class="btn btn-outline-secondary button3">C</button>
+                    <button type="button" class="btn btn-outline-secondary button3">D</button>
+                </div>
+                <br><br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-show-nonsense"> Next </button></div>
+            </div>
+
+            <div id="nonsense" class="text-center" style="display:none">
+                <h3>What is the seventh letter in the word "thumbnail"?</h3><br>
+                <div id="button-2" class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-secondary button3">A</button>
+                    <button type="button" class="btn btn-outline-secondary button3">B</button>
+                    <button type="button" class="btn btn-outline-secondary button3">C</button>
+                    <button type="button" class="btn btn-outline-secondary button3">D</button>
+                </div>
+                <br><br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-show-question-2"> Next </button></div>
+            </div>
+
+            <div id="question-2" class="text-center" style="display:none">
+                <h3 id="question2"> Why would you choose? (minimum 70 characters) </h3><br>
+                <textarea id="text-q2" cols="100" rows="4" > </textarea><br>
+                <span style="color:#aaa;" id="counter-q2">(0 / 300 characters)</span>
+                <br><br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-show-question-3"> Next </button></div>
+            </div>
+
+            <div id="question-3" class="text-center" style="display:none">
+                <h3>Why not the other three? (minimum 70 characters)</h3><br>
+                <div id="q3-A" style="display:none">
+                    <h4>A</h4>
+                    <textarea id="text-1" cols="100" rows="4" > </textarea><br>
+                    <span style="color:#aaa;" id="counter-a">(0 / 300 characters)</span>
+                </div>
+                <div id="q3-B" style="display:none">
+                    <br>
+                    <h4>B</h4>
+                    <textarea id="text-2" cols="100" rows="4" > </textarea><br>
+                    <span style="color:#aaa;" id="counter-b">(0 / 300 characters)</span>
+                </div>
+                <div id="q3-C" style="display:none">
+                    <br>
+                    <h4>C</h4>
+                    <textarea id="text-3" cols="100" rows="4" > </textarea><br>
+                    <span style="color:#aaa;" id="counter-c">(0 / 300 characters)</span>
+                </div>
+                <div id="q3-D" style="display:none">
+                    <br>
+                    <h4>D</h4>
+                    <textarea id="text-4" cols="100" rows="4" > </textarea><br>
+                    <span style="color:#aaa;" id="counter-d">(0 / 300 characters)</span>
+                    <br>
+                </div>
+                <br>
+                <div class="text-right">
+                    <button type="button" class="btn btn-info" id="btn-finish-task"> Next </button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<style>
+        .column {
+        flex: 50%;
+        padding: 2px;
+    }
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+    /* Three image containers (use 25% for four, and 50% for two, etc) */
+    .column2 {
+        width: 16.66%;
+        padding: 5px;
+    }
+
+    /* Clear floats after image containers */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .tnv-container1 tnv-container2{
+        margin: 5px;
+    }
+
+    .left-text{
+    float: left;
+    }
+
+    .right-text{
+    float: right;
+    }
+
+    .btn-group {
+      margin: 3px;
+    }
+
+    ul {
+        font-size : 15pt;
+    }
+
+    p {
+        font-size : 15pt;
+    }
+
+    h4 {
+        font-size : 15pt;
+    }
+    @media (min-width: 1200px) {
+        .container {max-width:1400px}
+    }
+    @media (min-width: 1900px) {
+        textarea { width:850px }
+        #full-article-img-1 { width:700px }
+        #full-article-img-2 { width:700px }
+    }
+    .col-6 {
+        padding: 30px;
+    }
+</style>
+<script type='text/javascript' src="{% static "js/mturk-compare.js" %}"></script>
+<script>
+  //복붙막기
+        $(function(){
+          var failMessage = function(){
+              return alert("Copy & Paste is NOT allowed."), false;
+          },
+          preventEvent = {
+           "keydown" : function(e) {
+             var keycode = function(e){
+                     return ('which' in e ? e.which : e.keyCode)
+                 }(e),
+                 ctrl_cv = (e.ctrlKey && (keycode == 118 || keycode == 86)),
+                 shift_insert = (e.shiftKey && keycode == 45);
+                 if (ctrl_cv || shift_insert){
+                     return failMessage();
+                 }
+           }
+           ,"mousedown" : function(e) {
+              var rightClick = (e.button == 2);
+                if(rightClick){
+                   return failMessage();
+                }
+           }
+           ,"contextmenu" : function(e) {
+                   return failMessage();
+           }
+         };
+        $(document).bind(preventEvent);
+        }());
+
+
+  // 윈도우 창
+          $(window).resize(function() {
+            var window_width = window.outerWidth;
+            $("#width").val($(window).width());
+            $("#height").val($(window).height());
+            if (window_width/window.screen.width < 0.8) {
+                    alert("Your browser should be maximized and have \"100%\" font size ratio in the setting.");
+                 }
+        });
+
+        function resizeWin() {
+            window.resizeBy(1800, 1000);
+            window.focus();
+        }
+
+    $("#width").val($(window).width());
+    $("#height").val($(window).height());
+
+
+    if ($(window).width()/window.screen.width < 0.8) {
+        alert("Your browser should be maximized and have \"100%\" font size ratio in the setting.");
+     }
+</script>
+</html>

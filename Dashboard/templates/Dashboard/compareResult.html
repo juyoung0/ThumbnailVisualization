@@ -1,0 +1,81 @@
+{% extends 'master4.html' %}
+{% load static %}
+{% block content %}
+<script>
+    var questions = {{ questions|safe }}
+    var ans = {{ ans|safe }}
+</script>
+    <b-container fluid id="app1">
+        <b-row>
+            <b-col>
+                <p>Thumbnail A</p>
+                <b-img class='tn' id='tn-a' src= "{% static "editedTN\a.png" %}" style="width:400px" fluid />
+            </b-col>
+            <b-col>
+                <p>Thumbnail B</p>
+                <b-img class='tn' id='tn-b' src= "{% static "editedTN\b.png" %}" style="width:400px" fluid />
+            </b-col>
+            <b-col>
+                <p>Thumbnail C</p>
+                <b-img class='tn' id='tn-c' src= "{% static "editedTN\c.png" %}" style="width:400px" fluid />
+            </b-col>
+            <b-col>
+                <p>Thumbnail D</p>
+                <b-img class='tn' id='tn-d' src= "{% static "editedTN\d.png" %}" style="width:400px" fluid />
+            </b-col>
+            <b-col>
+                <bar-chart
+                        v-bind:columns='["(A)","(B)","(C)","(D)"]'
+                        v-bind:label="'Number of Participants'"
+                        v-bind:data="cnt"
+                ></bar-chart>
+            </b-col>
+            <b-col>
+                <h3> Chisquare </h3>
+                <show-table2
+                    v-bind:values="chi"
+                    v-bind:columns=["statistic","pVal"]>
+                </show-table2>
+            </b-col>
+        </b-row>
+    </b-container>
+
+    <b-container fluid id="app2">
+        <h2> [[ title ]] </h2>
+        <b-row>
+            <b-col>
+                <show-table4
+                    v-bind:values="dataList"
+                    v-bind:columns="columns"
+                    v-bind:questions="questions">
+                </show-table4>
+            </b-col>
+        </b-row>
+    </b-container>
+    <script>
+
+    var app1 = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#app1',
+          data: {
+            title: 'Thumbnail A & B',
+            cnt: ans.cnt,
+            anova: ans.anova,
+            chi: ans.chi,
+            columns: ["1","2","3","4","5","6","7"]
+          }
+     })
+
+    var app2 = new Vue({
+          delimiters: ['[[', ']]'],
+          el: '#app2',
+          data: {
+            title: ans.title,
+            dataList: ans.des,
+            questions: questions,
+            columns: ['id', 'q1', 'q2', 'q3', 'q4'],
+          }
+        })
+
+   </script>
+{% endblock %}
