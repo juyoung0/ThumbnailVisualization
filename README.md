@@ -14,6 +14,10 @@ MTurk 에 사용된 실험 페이지를 구현하였고, 실험 결과는 django
 가짜 데이터 생성 후 추가 예정
 
 ### 실행 방법 ###
+<pre>
+<code>
 pip3 install -r requirements.txt
 python3 manage.py migrate
 python3 manage.py runserver
+</code>
+</pre>
