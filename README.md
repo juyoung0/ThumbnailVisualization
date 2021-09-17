@@ -10,8 +10,9 @@ MTurk 에 사용된 실험 페이지를 구현하였고, 실험 결과는 django
 * 개발 인원 : 2명. 개발 리더 담당
 * 사용 스택 : html, Vue.js, python-Django, sqlite3
 
-### 데모 ###
-가짜 데이터 생성 후 추가 예정
+### 예시 ###
+![image](https://user-images.githubusercontent.com/8486747/133775609-5a39ba43-3233-4e06-a066-9cd7916712ec.png)
+
 
 ### 실행 방법 ###
 <pre>
